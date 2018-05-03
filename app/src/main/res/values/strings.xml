@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Random Color Game</string>
 
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="menu_new">Lancer une partie</string>
+    <string name="menu_validate">Valider</string>
+    <string name="menu_remember">Retenez bien cette couleur:</string>
+    <string name="menu_prompt">Choisissez la couleur que vous avez vu:</string>
+    <string name="menu_open_colorpicker">Ouvrir la palette</string>
 </resources>

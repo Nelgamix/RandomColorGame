@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="@string/menu_remember"
         android:textAlignment="center"
-        android:textSize="24sp" />
+        android:textSize="20sp" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/activity_menu_background"
@@ -44,6 +44,44 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_menu_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_color_to_find"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <FrameLayout
+            android:id="@+id/activity_menu_result_expected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_color_input"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <FrameLayout
+            android:id="@+id/activity_menu_result_given"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+        </FrameLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/activity_menu_validate"

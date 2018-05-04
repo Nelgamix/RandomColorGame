@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -20,6 +21,9 @@ class MenuActivity : AppCompatActivity(), ColorPickerDialogListener {
     private lateinit var mButtonValidate : Button
     private lateinit var mTitle : TextView
     private lateinit var mBackground : View
+    private lateinit var mResult : View
+    private lateinit var mResultExpected : View
+    private lateinit var mResultGiven : View
 
     private var isPlaying = false
 
@@ -35,6 +39,9 @@ class MenuActivity : AppCompatActivity(), ColorPickerDialogListener {
         mButtonValidate = findViewById(R.id.activity_menu_validate)
         mTitle = findViewById(R.id.activity_menu_title)
         mBackground = findViewById(R.id.activity_menu_background)
+        mResult = findViewById(R.id.activity_menu_result)
+        mResultExpected = findViewById(R.id.activity_menu_result_expected)
+        mResultGiven = findViewById(R.id.activity_menu_result_given)
 
         update()
     }
@@ -66,6 +73,7 @@ class MenuActivity : AppCompatActivity(), ColorPickerDialogListener {
         ColorPickerDialog.newBuilder()
                 .setDialogType(ColorPickerDialog.TYPE_CUSTOM)
                 .setAllowPresets(false)
+                .setColor(colorPicked)
                 .show(this)
     }
 
@@ -76,24 +84,29 @@ class MenuActivity : AppCompatActivity(), ColorPickerDialogListener {
             mButtonOCP.visibility = View.VISIBLE
             mButtonValidate.isEnabled = true
             mTitle.text = getString(R.string.menu_prompt)
+            mResult.visibility = View.INVISIBLE
         } else {
             mButtonOCP.visibility = View.GONE
             mButtonValidate.isEnabled = false
             mButtonOCP.isEnabled = false
             mTitle.text = getString(R.string.menu_remember)
+            mResult.visibility = View.VISIBLE
         }
     }
 
     private fun beginGame() {
+        mBackground.setBackgroundColor(Color.WHITE)
         isPlaying = true
         update()
-        mBackground.setBackgroundColor(Color.WHITE)
     }
 
     private fun endGame() {
+        Toast.makeText(this, "Diff: ${calculateDiffColors(color, colorPicked)}", Toast.LENGTH_LONG).show()
+        mResultExpected.setBackgroundColor(color)
+        mResultGiven.setBackgroundColor(colorPicked)
         isPlaying = false
         update()
-        Toast.makeText(this, "Diff: ${calculateDiffColors(color, colorPicked)}", Toast.LENGTH_LONG).show()
+        colorPicked = Color.BLACK
     }
 
     private fun calculateDiffColors(color1: Int, color2: Int): Double {
@@ -104,6 +117,8 @@ class MenuActivity : AppCompatActivity(), ColorPickerDialogListener {
         val c2r = Color.red(color2)
         val c2g = Color.green(color2)
         val c2b = Color.blue(color2)
+
+        Log.d("Machin", "Color 1: ${c1r}R${c1g}G${c1b}B, Color 2: ${c2r}R${c2g}G${c2b}B")
 
         val rmean = (c1r + c2r) / 2
         val r = c1r - c2r

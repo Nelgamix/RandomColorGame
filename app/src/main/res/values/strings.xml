@@ -6,4 +6,6 @@
     <string name="menu_remember">Retenez bien cette couleur:</string>
     <string name="menu_prompt">Choisissez la couleur que vous avez vu:</string>
     <string name="menu_open_colorpicker">Ouvrir la palette</string>
+    <string name="menu_color_to_find">Couleur à trouver</string>
+    <string name="menu_color_input">Couleur proposée</string>
 </resources>
